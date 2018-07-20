@@ -1,19 +1,39 @@
 var canvas = document.getElementById('mycanvas');
 var ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+var w = window.innerWidth;
+var h = window.innerHeight;
+canvas.width = w;
+canvas.height = h
 
-var position = {
+var ship = {
     x: 0,
-    y: 0
+    y: 0,
+    deg: 0
+}
+
+function init() {
+    ship.deg = 45;
+    ship.x = Math.random() * w;
+    ship.y = Math.random() * h;
+}
+
+function update() {
+    ship.x += 0.1;
+    ship.y += 0.5;
 }
 
 function draw() {
-    ctx.clearRect(0, 0, 5000, 5000);
-    position.x += 5;
-    ctx.fillStyle = 'red';
-    ctx.fillRect(position.x, position.y, 50, 50);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(ship.x, ship.y, 50, 50);
+    requestAnimationFrame(draw);
 }
 
-setInterval(draw, 100);
+init();
+
+let fps = 60;
+setInterval(update, 1000 / fps);
+requestAnimationFrame(draw);
