@@ -96,12 +96,12 @@ function update() {
     // ship.x += 0.1;
     // ship.y += 0.5;
     ship.deg = mousePostion.x / 50;
-  
+
     time++;
     if (time % 30 == 0) {
         var b = new Bullet({
-            x: 50,
-            y: 50,
+            x: w / 2,
+            y: h / 2,
             v: {
                 x: 1,
                 y: 1
@@ -109,7 +109,7 @@ function update() {
         })
         bullets.push(b);
     }
-    bullets.forEach(b=>b.update());
+    bullets.forEach(b => b.update());
 }
 
 function draw() {
@@ -137,7 +137,7 @@ function draw() {
     ctx.restore();
 
     // 子彈
-    bullets.forEach(b=>b.draw());
+    bullets.forEach(b => b.draw());
 
     ctx.fillStyle = 'white';
     ctx.fillRect(ship.x, ship.y, 50, 50);
