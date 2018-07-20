@@ -100,11 +100,11 @@ function update() {
     time++;
     if (time % 30 == 0) {
         var b = new Bullet({
-            x: w / 2,
-            y: h / 2,
+            x: w / 2 + Math.cos(ship.deg) * ship.r,
+            y: h / 2 + Math.sin(ship.deg) * ship.r,
             v: {
-                x: 1,
-                y: 1
+                x: Math.cos(ship.deg) * 2,
+                y: Math.sin(ship.deg) * 2
             }
         })
         bullets.push(b);
