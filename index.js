@@ -14,7 +14,7 @@ var ship = {
 }
 
 function init() {
-    ship.deg = 45;
+    ship.deg = 0;
     ship.x = Math.random() * w;
     ship.y = Math.random() * h;
 }
@@ -22,7 +22,7 @@ function init() {
 function update() {
     ship.x += 0.1;
     ship.y += 0.5;
-    ship.deg += 0.05;
+    ship.deg = mousePostion.x / 50;
 }
 
 function draw() {
@@ -47,6 +47,9 @@ function draw() {
     ctx.save();
     ctx.translate(w / 2, h / 2);
     ctx.rotate(ship.deg);
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(100, -25 / 2, 25, 25);
 
     ctx.beginPath();
     ctx.arc(0, 0, ship.r, 0, Math.PI * 2);
@@ -79,3 +82,13 @@ init();
 let fps = 60;
 setInterval(update, 1000 / fps);
 requestAnimationFrame(draw);
+
+var mousePostion = {
+    x: 0,
+    y: 0
+}
+
+canvas.addEventListener('mousemove', function (e) {
+    mousePostion.x = e.x;
+    mousePostion.y = e.y;
+});
