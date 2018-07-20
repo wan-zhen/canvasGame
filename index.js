@@ -49,7 +49,34 @@ class Ship {
     }
 }
 
+class Bullet {
+    constructor(args) {
+        let def = {
+            x: 0,
+            y: 0,
+            v: {
+                x: 0,
+                y: 0
+            }
+        }
+        Object.assign(def, args);
+        Object.assign(this, def);
+    }
+    update() {
+        this.x += this.v.x;
+        this.y += this.v.y;
+    }
+    draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, 10, 10);
+        ctx.restore();
+    }
+}
+
 var ship, ship2, ship3
+var b
 
 function init() {
     ship = new Ship({
@@ -63,6 +90,10 @@ function init() {
     ship3 = new Ship({
         deg: 45 * degToPi,
         r: 250
+    })
+    b = new Bullet({
+        x: 50,
+        y: 50
     })
     //ship.deg = 0;
     //ship.x = Math.random() * w;
@@ -101,6 +132,8 @@ function draw() {
     ship3.draw();
     ctx.restore();
 
+    // 子彈
+    b.draw()
 
     ctx.fillStyle = 'white';
     ctx.fillRect(ship.x, ship.y, 50, 50);
