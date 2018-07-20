@@ -69,8 +69,18 @@ class Bullet {
     draw() {
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, 10, 10);
+        ctx.fillStyle = '#ff2877';
+
+        ctx.beginPath();
+        let size = 0.25;
+        ctx.moveTo(75 * size, 40 * size);
+        ctx.bezierCurveTo(75 * size, 37 * size, 70 * size, 25 * size, 50 * size, 25 * size);
+        ctx.bezierCurveTo(20 * size, 25 * size, 20 * size, 62.5 * size, 20 * size, 62.5 * size);
+        ctx.bezierCurveTo(20 * size, 80 * size, 40 * size, 102 * size, 75 * size, 120 * size);
+        ctx.bezierCurveTo(110 * size, 102 * size, 130 * size, 80 * size, 130 * size, 62.5 * size);
+        ctx.bezierCurveTo(130 * size, 62.5 * size, 130 * size, 25 * size, 100 * size, 25 * size);
+        ctx.bezierCurveTo(85 * size, 25 * size, 75 * size, 37 * size, 75 * size, 40 * size);
+        ctx.fill();
         ctx.restore();
     }
 }
@@ -96,7 +106,6 @@ function update() {
     // ship.x += 0.1;
     // ship.y += 0.5;
     ship.deg = mousePostion.x / 50;
-
     time++;
     if (time % 30 == 0) {
         var b = new Bullet({
