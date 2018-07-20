@@ -49,6 +49,10 @@ function draw() {
     ctx.arc(0, 0, ship.r, 0, Math.PI * 2);
     ctx.strokeStyle = 'white';
     ctx.lineWidth = 12;
+
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = 'white';
+
     ctx.stroke();
 
     for (let index = 0; index < 3; index++) {
