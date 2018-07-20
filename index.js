@@ -10,5 +10,8 @@ ctx.lineTo(500, 100);
 ctx.lineTo(300, 400);
 ctx.closePath();
 
-ctx.fillStyle = 'red';
-ctx.fill();
+ctx.strokeStyle='black'
+ctx.lineWidth=10;
+ctx.stroke();
+
+ctx.fillRect(100,50,200,200);
