@@ -70,7 +70,6 @@ class Bullet {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.fillStyle = '#ff2877';
-
         ctx.beginPath();
         let size = 0.25;
         ctx.moveTo(75 * size, 40 * size);
@@ -93,8 +92,6 @@ function init() {
         deg: 150 * degToPi,
         r: 120
     })
-
-
     //ship.deg = 0;
     //ship.x = Math.random() * w;
     //ship.y = Math.random() * h;
@@ -147,9 +144,7 @@ function draw() {
 
     // 子彈
     bullets.forEach(b => b.draw());
-
-    ctx.fillStyle = 'white';
-    ctx.fillRect(ship.x, ship.y, 50, 50);
+    
     requestAnimationFrame(draw);
 }
 
