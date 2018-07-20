@@ -24,8 +24,22 @@ function update() {
 }
 
 function draw() {
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#001d2e';
     ctx.fillRect(0, 0, w, h);
+    ctx.beginPath();
+
+    for (let index = 0; index < w; index += 50) {
+        ctx.moveTo(index, 0);
+        ctx.lineTo(index, w);
+    }
+
+    for (let index = 0; index < h; index += 50) {
+        ctx.moveTo(0, index);
+        ctx.lineTo(w, index);
+    }
+
+    ctx.strokeStyle = 'rgba(255,255,255,.2)';
+    ctx.stroke();
 
     ctx.fillStyle = 'white';
     ctx.fillRect(ship.x, ship.y, 50, 50);
