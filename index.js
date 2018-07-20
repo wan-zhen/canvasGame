@@ -76,7 +76,7 @@ class Bullet {
 }
 
 var ship, ship2, ship3
-var b
+
 
 function init() {
     ship = new Ship({
@@ -84,24 +84,32 @@ function init() {
         r: 120
     })
 
-    b = new Bullet({
-        x: 50,
-        y: 50,
-        v: {
-            x: 5,
-            y: 5
-        }
-    })
+
     //ship.deg = 0;
     //ship.x = Math.random() * w;
     //ship.y = Math.random() * h;
 }
+var time = 0;
+var bullets = [];
 
 function update() {
     // ship.x += 0.1;
     // ship.y += 0.5;
     ship.deg = mousePostion.x / 50;
-    b.update();
+  
+    time++;
+    if (time % 30 == 0) {
+        var b = new Bullet({
+            x: 50,
+            y: 50,
+            v: {
+                x: 1,
+                y: 1
+            }
+        })
+        bullets.push(b);
+    }
+    bullets.forEach(b=>b.update());
 }
 
 function draw() {
@@ -126,12 +134,10 @@ function draw() {
     ctx.save();
     ctx.translate(w / 2, h / 2);
     ship.draw();
-    ship2.draw();
-    ship3.draw();
     ctx.restore();
 
     // 子彈
-    b.draw()
+    bullets.forEach(b=>b.draw());
 
     ctx.fillStyle = 'white';
     ctx.fillRect(ship.x, ship.y, 50, 50);
