@@ -1,17 +1,19 @@
 var canvas = document.getElementById('mycanvas');
 var ctx = canvas.getContext('2d');
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-ctx.beginPath();
-ctx.moveTo(100, 100);
-ctx.lineTo(500, 100);
-ctx.lineTo(300, 400);
-ctx.closePath();
+var position = {
+    x: 0,
+    y: 0
+}
 
-ctx.strokeStyle='black'
-ctx.lineWidth=10;
-ctx.stroke();
+function draw() {
+    ctx.clearRect(0, 0, 5000, 5000);
+    position.x += 5;
+    ctx.fillStyle = 'red';
+    ctx.fillRect(position.x, position.y, 50, 50);
+}
 
-ctx.fillRect(100,50,200,200);
+setInterval(draw, 100);
