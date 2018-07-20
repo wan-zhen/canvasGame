@@ -93,7 +93,11 @@ function init() {
     })
     b = new Bullet({
         x: 50,
-        y: 50
+        y: 50,
+        v: {
+            x: 5,
+            y: 5
+        }
     })
     //ship.deg = 0;
     //ship.x = Math.random() * w;
@@ -104,6 +108,7 @@ function update() {
     // ship.x += 0.1;
     // ship.y += 0.5;
     ship.deg = mousePostion.x / 50;
+    b.update();
 }
 
 function draw() {
