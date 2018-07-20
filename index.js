@@ -48,15 +48,20 @@ class Ship {
     }
 }
 
-var ship
+var ship, ship2
 
 function init() {
     ship = new Ship({
-        deg: 45 * degToPi
+        deg: 45 * degToPi,
+        r: 120
+    })
+    ship2 = new Ship({
+        deg: 150 * degToPi,
+        r: 50
     })
     //ship.deg = 0;
-    ship.x = Math.random() * w;
-    ship.y = Math.random() * h;
+    //ship.x = Math.random() * w;
+    //ship.y = Math.random() * h;
 }
 
 function update() {
@@ -88,6 +93,9 @@ function draw() {
     ship.draw();
 
     ctx.restore();
+
+    ctx.save();
+    ship2.draw();
 
     ctx.fillStyle = 'white';
     ctx.fillRect(ship.x, ship.y, 50, 50);
