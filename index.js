@@ -20,13 +20,39 @@ class Ship {
         Object.assign(def, args);
         Object.assign(this, def);
     }
+    draw() {
+        ctx.translate(w / 2, h / 2);
+        ctx.rotate(ship.deg);
+
+        ctx.fillStyle = 'white';
+        ctx.fillRect(100, -25 / 2, 25, 25);
+
+        ctx.beginPath();
+        ctx.arc(0, 0, ship.r, 0, Math.PI * 2);
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 12;
+
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = 'white';
+
+        ctx.stroke();
+
+        for (let index = 0; index < 3; index++) {
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, -ship.r);
+            ctx.stroke();
+            ctx.rotate(Math.PI * 2 / 3)
+        }
+    }
 }
 
 var ship
 
 function init() {
     ship = new Ship({
-        deg: 0
+        deg: 45 * degToPi
     })
     //ship.deg = 0;
     ship.x = Math.random() * w;
@@ -59,30 +85,7 @@ function draw() {
 
     // 船
     ctx.save();
-    ctx.translate(w / 2, h / 2);
-    ctx.rotate(ship.deg);
-
-    ctx.fillStyle = 'white';
-    ctx.fillRect(100, -25 / 2, 25, 25);
-
-    ctx.beginPath();
-    ctx.arc(0, 0, ship.r, 0, Math.PI * 2);
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 12;
-
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = 'white';
-
-    ctx.stroke();
-
-    for (let index = 0; index < 3; index++) {
-        ctx.lineWidth = 5;
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(0, -ship.r);
-        ctx.stroke();
-        ctx.rotate(Math.PI * 2 / 3)
-    }
+    ship.draw();
 
     ctx.restore();
 
