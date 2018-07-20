@@ -3,18 +3,32 @@ var ctx = canvas.getContext('2d');
 
 var w = window.innerWidth;
 var h = window.innerHeight;
+
+let degToPi = Math.PI * 2 / 360;
+
 canvas.width = w;
 canvas.height = h
 
-var ship = {
-    x: 0,
-    y: 0,
-    deg: 0,
-    r: 70
+class Ship {
+    constructor(args) {
+        let def = {
+            x: 0,
+            y: 0,
+            r: 50,
+            deg: 50 * degToPi
+        }
+        Object.assign(def, args);
+        Object.assign(this, def);
+    }
 }
 
+var ship
+
 function init() {
-    ship.deg = 0;
+    ship = new Ship({
+        deg: 0
+    })
+    //ship.deg = 0;
     ship.x = Math.random() * w;
     ship.y = Math.random() * h;
 }
