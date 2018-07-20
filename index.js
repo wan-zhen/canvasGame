@@ -83,14 +83,7 @@ function init() {
         deg: 150 * degToPi,
         r: 120
     })
-    ship2 = new Ship({
-        deg: 45 * degToPi,
-        r: 50
-    })
-    ship3 = new Ship({
-        deg: 45 * degToPi,
-        r: 250
-    })
+
     b = new Bullet({
         x: 50,
         y: 50,
