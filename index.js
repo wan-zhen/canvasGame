@@ -10,7 +10,7 @@ var ship = {
     x: 0,
     y: 0,
     deg: 0,
-    r: 100
+    r: 70
 }
 
 function init() {
@@ -22,6 +22,7 @@ function init() {
 function update() {
     ship.x += 0.1;
     ship.y += 0.5;
+    ship.deg += 0.05;
 }
 
 function draw() {
@@ -42,9 +43,11 @@ function draw() {
     ctx.strokeStyle = 'rgba(255,255,255,.2)';
     ctx.stroke();
 
+    // 船
     ctx.save();
     ctx.translate(w / 2, h / 2);
-    // 船
+    ctx.rotate(ship.deg);
+
     ctx.beginPath();
     ctx.arc(0, 0, ship.r, 0, Math.PI * 2);
     ctx.strokeStyle = 'white';
