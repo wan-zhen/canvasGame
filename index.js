@@ -21,16 +21,16 @@ class Ship {
         Object.assign(this, def);
     }
     draw() {
-        ctx.translate(w / 2, h / 2);
-        ctx.rotate(ship.deg);
+        ctx.save();
+        ctx.rotate(this.deg);
 
         ctx.fillStyle = 'white';
         ctx.fillRect(100, -25 / 2, 25, 25);
 
         ctx.beginPath();
-        ctx.arc(0, 0, ship.r, 0, Math.PI * 2);
+        ctx.arc(0, 0, this.r, 0, Math.PI * 2);
         ctx.strokeStyle = 'white';
-        ctx.lineWidth = 12;
+        ctx.lineWidth = 15;
 
         ctx.shadowBlur = 20;
         ctx.shadowColor = 'white';
@@ -41,23 +41,28 @@ class Ship {
             ctx.lineWidth = 5;
             ctx.beginPath();
             ctx.moveTo(0, 0);
-            ctx.lineTo(0, -ship.r);
+            ctx.lineTo(0, -this.r);
             ctx.stroke();
             ctx.rotate(Math.PI * 2 / 3)
         }
+        ctx.restore();
     }
 }
 
-var ship, ship2
+var ship, ship2, ship3
 
 function init() {
     ship = new Ship({
-        deg: 45 * degToPi,
+        deg: 150 * degToPi,
         r: 120
     })
     ship2 = new Ship({
-        deg: 150 * degToPi,
+        deg: 45 * degToPi,
         r: 50
+    })
+    ship3 = new Ship({
+        deg: 45 * degToPi,
+        r: 250
     })
     //ship.deg = 0;
     //ship.x = Math.random() * w;
@@ -65,8 +70,8 @@ function init() {
 }
 
 function update() {
-    ship.x += 0.1;
-    ship.y += 0.5;
+    // ship.x += 0.1;
+    // ship.y += 0.5;
     ship.deg = mousePostion.x / 50;
 }
 
@@ -90,12 +95,12 @@ function draw() {
 
     // 船
     ctx.save();
+    ctx.translate(w / 2, h / 2);
     ship.draw();
-
+    ship2.draw();
+    ship3.draw();
     ctx.restore();
 
-    ctx.save();
-    ship2.draw();
 
     ctx.fillStyle = 'white';
     ctx.fillRect(ship.x, ship.y, 50, 50);
